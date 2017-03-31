@@ -162,9 +162,9 @@ footer .heart {
 }
 
 .form-group {
-  position:absolute;
-  bottom:10%;
-  margin-left: 45%;
+  /*position:absolute;*/
+  /*bottom:10%;*/
+  /*margin-left: 45%;*/
 }
 
 .blackC, .whiteC{
@@ -175,7 +175,6 @@ footer .heart {
   border-radius: 10%;
 }
 
-.whiteC p{ 
+.whiteC p{
   font-size: 20px;
 }
-

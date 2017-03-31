@@ -5,6 +5,7 @@ angular.module('DeckCtrls', ['Services'])
   $scope.blackCards = [];
   $scope.whiteCards = [];
   $scope.myCards = {};
+  $scope.editingCard = '';
 
   DeckAPI.getDecks().then(function success(response){
     $scope.decks = response;
@@ -56,7 +57,56 @@ angular.module('DeckCtrls', ['Services'])
       console.log("Error in myCards", err)
     })
   }
-  
+
+  $scope.editCard = function(isBlackCard, card){
+    if(!isBlackCard){
+      WhiteCardAPI.updateCard(card).then(function success(res){
+        $scope.editingCard = '';
+      }, function error(err){
+        console.log("error", err);
+      });
+    } else {
+      BlackCardAPI.updateCard(card).then(function success(res){
+        $scope.editingCard = '';
+      }, function error(err){
+        console.log("error", err);
+      });
+    }
+  }
+
+  $scope.toggleEdit = function(card) {
+    if($scope.editingCard !== card._id){
+        $scope.editingCard = card._id;
+    } else{
+      $scope.editingCard = '';
+    }
+  }
+
+  $scope.deleteCard = function(isBlackCard, cardId) {
+    console.log("delete card " + cardId);
+    if(isBlackCard){
+      BlackCardAPI.deleteCard(cardId).then(function success(res){
+        BlackCardAPI.getMyCards().then(function success(res){
+          $scope.myCards.blackCards = res;
+        }, function error(err){
+          console.log("Error in myCards", err);
+        })
+      }, function error(err){
+        console.log("Error in myCards", err);
+      });
+    } else {
+      WhiteCardAPI.deleteCard(cardId).then(function success(res){
+        WhiteCardAPI.getMyCards().then(function success(res){
+          $scope.myCards.whiteCards = res;
+        }, function error(err){
+          console.log("Error in myCards", err)
+        });
+      }, function error(err){
+        console.log("error", err);
+      });
+    }
+  }
+
   $scope.getCards = function(){
     $scope.blackCards = [];
     $scope.whiteCards = [];
