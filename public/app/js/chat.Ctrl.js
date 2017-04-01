@@ -39,6 +39,7 @@ angular.module('ChatCtrls', ['Services'])
   });
 
 
+
   $scope.$watch("sendDothBitchesElsewhere", function(newVal, oldVal){
     if(newVal){
       $location.path("/main/" + $stateParams.roomId);
