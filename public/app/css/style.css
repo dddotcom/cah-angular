@@ -7,6 +7,10 @@ body {
   background-color: black;
 }
 
+.radio {
+  margin-top: 0px;
+}
+
 .chat {
   background-color: rgba(0,0,0,.5);
   color: white;
@@ -64,6 +68,11 @@ header.navbar {
 }
 
 h1 {
+  font-weight: bold;
+  letter-spacing: -2px;
+}
+
+h2 {
   font-weight: bold;
   letter-spacing: -2px;
 }

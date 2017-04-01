@@ -1,0 +1,54 @@
+<h1 class="text-center">Deck Builder</h1>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <h2 class="text-center"># of White Cards: {{newDeck.whiteCards.size}}</h2>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <h2 class="text-center"># of Black Cards: {{newDeck.blackCards.size}}</h2>
+  </div>
+</div>
+
+  <div class="text-center">
+
+    <select ng-model="deckId">
+      <option disabled selected value> -- All cards -- </option>
+      <option ng-repeat="d in decks track by $index" value="{{d._id}}">{{d.name}}</option>
+    </select>
+    <button class="btn btn-primary" ng-click="getCards()">Show me the cards!</button>
+    <br><br>
+    <button class="btn btn-primary" ng-click="addCards()">Add Selected Cards</button>
+    <button class="btn btn-primary" ng-show="deckRulesMet()" ng-click="createCustomDeck()">Create Custom Deck</button>
+  </div>
+
+  <div class="text-center" ng-show="blackCards.length > 0">
+    <h2>Black Cards ({{blackCards.length}}) <input type="checkbox" ng-click="toggleAll(true)"></h2>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class='col-xs-2' ng-repeat="card in blackCards track by $index">
+      <div class='card'>
+        <input ng-model="card.selected" type="checkbox" value="{{card._id}}">
+        <h4 class="card-title">{{card.question}} </h4>
+        <h6>Cards Against Humanity</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center" ng-show="whiteCards.length > 0">
+    <h2>White Cards ({{whiteCards.length}}) <input type="checkbox" ng-click="toggleAll(false)"></h2>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class='col-xs-2' ng-repeat="card in whiteCards track by $index">
+      <div class='answer-card'>
+        <input ng-model="card.selected" type="checkbox" value="{{card._id}}">
+        <h4 class="card-title">{{card.answer}} </h4>
+        <h6>Cards Against Humanity</h6>
+      </div>
+    </div>
+  </div>
