@@ -18,6 +18,14 @@ router.get('/:deckName', function(req, res){
   });
 });
 
+//create new deck
+router.post('/', function(req, res){
+  Deck.create(req.body, function(err, deck){
+    if (err) return res.status(500).send(err);
+    return res.send(deck);
+  });
+});
+
 //deck w/ all cards
 
 //all users decks

@@ -7,6 +7,10 @@ body {
   background-color: #bbc3c6;
 }
 
+.radio {
+  margin-top: 0px;
+}
+
 .chat {
   background-color: rgba(0,0,0,.8);
   color: white;
@@ -74,6 +78,11 @@ h1 {
 }
 
 h1:after,
+h2 {
+  font-weight: bold;
+  letter-spacing: -2px;
+}
+
 .card h6:after,
 .answer-card h6:after {
   content: "™";
