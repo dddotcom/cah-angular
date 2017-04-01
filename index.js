@@ -57,7 +57,9 @@ app.use(function (err, req, res, next) {
 
 //io stuff
 io.sockets.on('connection', function(socket){
-    var roomKey = socket.handshake.headers.referer.split(":3000/")[1];
+    var roomKey = socket.handshake.headers.referer
+    roomKey = roomKey.substring(roomKey.length-15)
+    console.log("room Key:", roomKey)
     socket.join(roomKey)
     console.log('a user connected to,', roomKey);
     socket.on('get-users', function() {
@@ -81,7 +83,9 @@ io.sockets.on('connection', function(socket){
     var match = users.filter(function(value){
       return value.room === roomKey;
     })
-    io.sockets.in(roomKey).emit('all-users', match);
+    if(match.length > 0) {
+      io.sockets.in(roomKey).emit('all-users', match);
+    }
   });
 
   socket.on('send-message', function(data) {

@@ -5,7 +5,7 @@
 		<br />
 		<form class="form-group" ng-submit="join()" ng-hide="mynickname">
 		    <input type="text" ng-model="playerInput" size="50" placeholder="Nickname" class="nickname-input">
-		    <input class="btn btn-primary"type="submit" value="Join Game">
+		    <input class="btn default-btn" type="submit" value="Join Game">
 		</form>
 		<br>
 		<div ng-repeat="x in playerList">
@@ -13,11 +13,20 @@
 		</div>
 
 		<h4 ng-show="playerList[0].nickname === mynickname"><strong>Select which expansions you would like to play with:</strong></h4>
-		<label ng-repeat="d in decks track by $index" ng-show="playerList[0].nickname === mynickname">{{d.name}}
+		<label ng-repeat="d in decks track by $index" ng-show="playerList[0].nickname === mynickname">
+			<span class="checkBox">
 				<input ng-model="d.selected" type="checkbox" value="{{d._id}}">
+				<label>{{d.name}}</label>
+			</span>
 		</label><br/>
 
-		<a ng-show="playerList.length >= 3 && playerList.length <= 10 && playerList[0].nickname === mynickname" class="btn btn-success" value="Start Game" ng-click="startGame()" >Start Game</a>
+		<a ng-show="playerList.length >= 3 && playerList.length <= 10 && playerList[0].nickname === mynickname" class="btn default-btn" value="Start Game" ng-click="startGame()" >Start Game</a>
 		<br><br>
 		<p class="white"><strong>{{ errorMessage }}</strong></p>
+</div>
+
+<!-- Rounded ONE -->
+<div class="roundedOne">
+	<input type="checkbox" value="None" id="roundedOne" name="check" />
+	<label for="roundedOne"></label>
 </div>

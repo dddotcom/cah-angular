@@ -45,6 +45,7 @@ angular.module('DeckCtrls', ['Services'])
     }, function error(err){
       console.log(err);
     });
+  
   }
 
   if (Auth.isLoggedIn()){

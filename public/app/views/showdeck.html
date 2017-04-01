@@ -1,31 +1,32 @@
-<h1 class="text-center">Card Database</h1>
+<h2 class="text-center page-title">Card Database</h2>
 
 <div class="text-center">
 
   <select ng-model="deckId">
-    <option disabled selected value> -- All cards -- </option>
+    <option disabled selected value> --- All cards --- </option>
     <option ng-repeat="d in decks track by $index" value="{{d._id}}">{{d.name}}</option>
   </select>
-  <button class="btn btn-primary" ng-click="getCards()">Show me the cards!</button>
+  <button class="btn default-btn" ng-click="getCards()">Show me cards!</button>
 </div>
 
-
-<h2 class="text-center" ng-show="blackCards.length > 0">Black Cards ({{blackCards.length}})</h2>
-<div class="row">
-  <div class='col-xs-2' ng-repeat="card in blackCards track by $index">
-    <div class='card'>
-      <h4 class="card-title">{{card.question}} </h4>
-      <h6>Cards Against Humanity</h6>
+<div class="deck-container">
+  <h2 class="text-center" ng-show="blackCards.length > 0">Black Cards ({{blackCards.length}})</h2>
+  <div class="row">
+    <div class='col-sm-4 col-md-2' ng-repeat="card in blackCards track by $index">
+      <div class='card'>
+        <h4 class="card-title">{{card.question}} </h4>
+        <h6>Cards Against Humanity</h6>
+      </div>
     </div>
   </div>
-</div>
 
-<h2 class="text-center" ng-show="whiteCards.length > 0">White Cards ({{whiteCards.length}})</h2>
-<div class="row">
-  <div class='col-xs-2' ng-repeat="card in whiteCards track by $index">
-    <div class='answer-card'>
-      <h4 class="card-title">{{card.answer}} </h4>
-      <h6>Cards Against Humanity</h6>
+  <h2 class="text-center" ng-show="whiteCards.length > 0">White Cards ({{whiteCards.length}})</h2>
+  <div class="row">
+    <div class='col-sm-4 col-md-2' ng-repeat="card in whiteCards track by $index">
+      <div class='answer-card'>
+        <h4 class="card-title">{{card.answer}} </h4>
+        <h6>Cards Against Humanity</h6>
+      </div>
     </div>
   </div>
 </div>
