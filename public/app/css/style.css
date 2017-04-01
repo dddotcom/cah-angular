@@ -2,18 +2,21 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("../img/wood-bg.jpg");
+  /*background-image: url("../img/wood-bg.jpg");*/
   /*background-size: cover;*/
-  background-color: black;
+  background-color: #bbc3c6;
 }
 
 .chat {
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0,0,0,.8);
   color: white;
   position: fixed;
   top: 0px;
   right: 0;
   height: 100vh;
+}
+.chat .marker {
+  margin-top: 10px;
 }
 
 .chat .col-xs-12 {
@@ -21,14 +24,18 @@ body {
   padding-right: 5px;
 }
 
+.drawPile {
+  margin-left: 10px;
+}
+
 .chatbox {
-  color: black;
+  color: #1e1e20;
   overflow: scroll;
   height: 70vh;
 }
 
-.jumbotron {
-  background-color: rgba(0,0,0,0);
+.alertMessage {
+  color: #962715;
 }
 
 .white, .whiteC {
@@ -36,10 +43,8 @@ body {
 }
 
 .navbar {
-  background-color: rgba(0,0,0, 0.5);
-  border-color: rgba(0,0,0,0);
-  border-radius: 0px;
-  width: 83.3%;
+  background-color: #962715;
+  border: none;
 }
 
 .nickname-input {
@@ -68,7 +73,7 @@ h1 {
   letter-spacing: -2px;
 }
 
-/*h1:after, .card h6:after,*/
+h1:after,
 .card h6:after,
 .answer-card h6:after {
   content: "™";
@@ -79,12 +84,12 @@ h1 {
 
 .card, .newBlackCard, .blackC {
   color: white;
-  background: #231e1e;
+  background: #1e1e20;
 }
 
 .answer-card, .newWhiteCard, .whiteC {
   background: white;
-  color: black;
+  color: #1e1e20;
   width: 100%;
 }
 
@@ -105,23 +110,15 @@ h1 {
 
 .card,
 .answer-card, .card-back, .newBlackCard, .newWhiteCard {
-  border: 1px solid black;
+  width: 210px;
+  height: 280px;
+  border: 1px solid #1e1e20;
   border-radius: 15px;
   padding: 1rem;
-  min-height: 20em;
   position: relative;
   margin-bottom: 10px;
 }
 
-.card h6,
-.answer-card h6, {
-  position: absolute;
-  font-size: 0.6em;
-  margin-top: 1.618em;
-  opacity: 0.2;
-  bottom: 0.618em;
-  left: 1rem;
-}
 .card h6:after,
 .answer-card h6:after {
   font-size: 60%;
@@ -161,11 +158,6 @@ footer .heart {
   width: 400px;
 }
 
-.form-group {
-  /*position:absolute;*/
-  /*bottom:10%;*/
-  /*margin-left: 45%;*/
-}
 
 .blackC, .whiteC{
   text-align: center;
@@ -178,3 +170,87 @@ footer .heart {
 .whiteC p{
   font-size: 20px;
 }
+
+.card h6,
+.answer-card h6, {
+  font-size: 0.6em;
+  margin-top: 1.618em;
+  opacity: 0.2;
+  left: 1rem;
+}
+
+h6 {
+  font-size: 10px;
+  bottom: 10px;
+  position: absolute;
+}
+
+
+.page-title {
+  font-size: 40px;
+}
+
+.deck-container {
+  width: 95%;
+  margin: 0 auto;
+}
+#navBtn li a{
+  color: #ffffff;
+}
+
+.default-btn {
+  color: #962715;
+  background-color: #bbc3c6;
+  border-color: #962715;
+  border-radius: 10px;
+}
+.default-btn:hover {
+  color: #bbc3c6;
+  background-color: #962715;
+  border-color: #962715;
+}
+
+.well-btn {
+  color: #962715;
+  background-color: rgb(237, 237, 237);
+  border-color: #962715;
+  border-radius: 10px;
+}
+.well-btn:hover {
+  color: rgb(237, 237, 237);
+  background-color: #962715;
+  border-color: #962715;
+}
+
+.winner-btn {
+  display: block;
+  margin: 5px auto;
+  height: 70px;
+  width: 150px;
+  font-size: 20px;
+}
+
+.singleMessage {
+  background-color: #d1b280;
+  padding: 5px;
+  border-radius: 5px;
+  color: #1e1e20;
+  margin-bottom: 7px;
+}
+
+.checkBox {
+  margin: 10px;
+  font-weight: 2px;
+}
+
+.arrow {
+  text-align: center;
+}
+.arrow i {
+  font-size: 80px;
+}
+
+
+
+/*TEST*/
+

@@ -1,20 +1,22 @@
-<h1>User Signup</h1>
+<div class="col-xs-8 col-xs-offset-2">
+  <h1>User Signup</h1>
 
-<form ng-submit="userSignup()">
-  <legend>Signup</legend>
+  <form ng-submit="userSignup()">
+    <legend>Signup</legend>
 
-  <div class="form-group">
-    <label for="Username">Username</label>
-    <input type="text" class="form-control" id="username" placeholder="DudeManBro" ng-model="user.username">
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" placeholder="test@test.com" ng-model="user.email">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="********" ng-model="user.password">
-  </div>
+    <div class="form-group">
+      <label for="Username">Username</label>
+      <input type="text" class="form-control" id="username" placeholder="DudeManBro" ng-model="user.username">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="test@test.com" ng-model="user.email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="********" ng-model="user.password">
+    </div>
 
-  <button type="submit" class="btn btn-primary">Signup</button>
-</form>
+    <button type="submit" class="btn default-btn">Signup</button>
+  </form>
+</div>

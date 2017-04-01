@@ -10,13 +10,13 @@
           <div ng-show="editingCard === card._id" class="form-group">
             <label for="answer">Answer</label>
             <input type="text" class="form-control" placeholder="..." ng-model="card.answer">
-            <button class="btn btn-info" ng-click="editCard(false, card)">Save</button>
+            <button class="btn default-btn" ng-click="editCard(false, card)">Save</button>
           </div>
           <h4>{{card.answer}} </h4>
           <h6>Cards Against Humanity</h6>
         </div>
 
-        <button class="btn btn-info" ng-click="toggleEdit(card)">Edit</button>
+        <button class="btn default-btn" ng-click="toggleEdit(card)">Edit</button>
         <button class="btn btn-danger" ng-click="deleteCard(false, card._id)">Delete</button>
     </div>
 </div>
@@ -35,12 +35,12 @@
               <label class="Radio-inline">
                   <input type="radio" id="inlineRadio3" value="3" ng-model="card.blanks"> 3 </label>
               </section>
-            <button class="btn btn-info" ng-click="editCard(true, card)">Save</button>
+            <button class="btn default-btn" ng-click="editCard(true, card)">Save</button>
           </div>
           <h4>{{card.question}} </h4>
           <h6>Cards Against Humanity</h6>
         </div>
-        <button class="btn btn-info" ng-click="toggleEdit(card)">Edit</button>
+        <button class="btn default-btn" ng-click="toggleEdit(card)">Edit</button>
         <button class="btn btn-danger" ng-click="deleteCard(true, card._id)">Delete</button>
     </div>
 </div>

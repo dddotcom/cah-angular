@@ -35,8 +35,9 @@ angular.module('ChatCtrls', ['Services'])
     $scope.nicknames = [];
     data.forEach(function(d){
       $scope.nicknames.push(d.nickname);
-    });
+    }); 
   });
+
 
   $scope.$watch("sendDothBitchesElsewhere", function(newVal, oldVal){
     if(newVal){
