@@ -6,6 +6,8 @@ angular.module('DeckCtrls', ['Services'])
   $scope.whiteCards = [];
   $scope.myCards = {};
   $scope.editingCard = '';
+  $scope.oldValue = '';
+  $scope.blanks;
 
   DeckAPI.getDecks().then(function success(response){
     $scope.decks = response;
@@ -74,11 +76,23 @@ angular.module('DeckCtrls', ['Services'])
     }
   }
 
-  $scope.toggleEdit = function(card) {
+  $scope.toggleEdit = function(isBlackCard, card) {
     if($scope.editingCard !== card._id){
         $scope.editingCard = card._id;
+        if(isBlackCard){
+          $scope.oldValue = card.question;
+          $scope.oldBlanks = card.blanks;
+        } else {
+          $scope.oldValue = card.answer;
+        }
     } else{
       $scope.editingCard = '';
+      if(isBlackCard){
+        card.question = $scope.oldValue;
+        card.blanks = $scope.oldBlanks;
+      } else {
+          card.answer = $scope.oldValue;
+      }
     }
   }
 

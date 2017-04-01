@@ -16,7 +16,10 @@
           <h6>Cards Against Humanity</h6>
         </div>
 
-        <button class="btn btn-info" ng-click="toggleEdit(card)">Edit</button>
+        <button class="btn btn-info" ng-click="toggleEdit(false, card)">
+          <span ng-show="editingCard !== card._id">Edit</span>
+          <span ng-show="editingCard === card._id">Nvm</span>
+        </button>
         <button class="btn btn-danger" ng-click="deleteCard(false, card._id)">Delete</button>
     </div>
 </div>
@@ -40,7 +43,10 @@
           <h4>{{card.question}} </h4>
           <h6>Cards Against Humanity</h6>
         </div>
-        <button class="btn btn-info" ng-click="toggleEdit(card)">Edit</button>
+        <button class="btn btn-info" ng-click="toggleEdit(true, card)">
+          <span ng-show="editingCard !== card._id">Edit</span>
+          <span ng-show="editingCard === card._id">Nvm</span>
+        </button>
         <button class="btn btn-danger" ng-click="deleteCard(true, card._id)">Delete</button>
     </div>
 </div>
