@@ -144,54 +144,82 @@ angular.module('DeckCtrls', ['Services'])
   const MIN_BLACK_CARDS = 5;
   const MIN_WHITE_CARDS = (MAX_PLAYERS) * (CARDS_PER_PLAYER) + (MAX_PLAYERS) * (MIN_BLACK_CARDS -1); //140
 
-  $scope.newDeck = { blackCards: new Set(), whiteCards: new Set() };
+  $scope.newDeck = { blackCards: new Set(), whiteCards: new Set(), packName: '' };
   $scope.blackCards = [];
   $scope.whiteCards = [];
   $scope.decks = [];
   $scope.isAllSelected = { blackCards: false, whiteCards: false};
 
-  DeckAPI.getDecks().then(function success(response){
-    $scope.decks = response;
-  }, function error(err){
-    console.log(err);
-  });
 
-  $scope.getCards = function(){
-    $scope.blackCards = [];
-    $scope.whiteCards = [];
-    BlackCardAPI.getCardsFromManyDecks($scope.deckId).then(function success(response){
-      $scope.blackCards = response;
+  if (Auth.isLoggedIn()){
+    WhiteCardAPI.getMyCards().then(function success(res){
+      $scope.whiteCards = res;
     }, function error(err){
-      console.log(err);
-    });
-
-    WhiteCardAPI.getCardsFromManyDecks($scope.deckId).then(function success(response){
-      $scope.whiteCards = response;
+      console.log("Error in myCards", err)
+    })
+    BlackCardAPI.getMyCards().then(function success(res){
+      $scope.blackCards = res;
     }, function error(err){
-      console.log(err);
-    });
+      console.log("Error in myCards", err)
+    })
   }
 
   $scope.deckRulesMet = function(){
     return $scope.newDeck.blackCards.size >= MIN_BLACK_CARDS && $scope.newDeck.whiteCards.size >= MIN_WHITE_CARDS;
   }
 
+  $scope.expansionRulesMet = function(){
+    return $scope.newDeck.blackCards.size > 0 || $scope.newDeck.whiteCards.size > 0;
+  }
+
   $scope.createCustomDeck = function(){
     console.log("create my deck!");
-    //TODO: change set to array
-    // let array = Array.from(mySet);
-    // let array = [...mySet];
+    if($scope.newDeck.packName === ''){
+      $scope.errorMessage = "Please name your expansion";
+    } else {
+      console.log("Creating your curstom deck: " + $scope.newDeck.packName);
+      $scope.errorMessage = "";
+      var deck = {
+        name: $scope.newDeck.packName
+      }
+
+      DeckAPI.createDeck(deck).then(function success(res){
+        var newDeck = res;
+        var newDeckId = newDeck._id;
+        var bc = Array.from($scope.newDeck.blackCards);
+        var wc = Array.from($scope.newDeck.whiteCards);
+        //update cards with new deck id
+        bc.forEach(function(c){
+          c.pack = newDeckId;
+          BlackCardAPI.updateCard(c).then(function success(res){
+          }, function error(err){
+            console.log("error", err);
+          });
+        });
+        wc.forEach(function(c){
+          c.pack = newDeckId;
+          WhiteCardAPI.updateCard(c).then(function success(res){
+          }, function error(err){
+            console.log("error", err);
+          });
+        });
+      }, function error(err){
+        console.log(err);
+      })
+    }
   }
 
   $scope.addCards = function(){
     $scope.whiteCards.forEach(function(card) {
         if (card.selected) {
-        $scope.newDeck.whiteCards.add(card._id);
+        // $scope.newDeck.whiteCards.add(card._id);
+        $scope.newDeck.whiteCards.add(card);
       }
     });
     $scope.blackCards.forEach(function(card) {
         if (card.selected) {
-        $scope.newDeck.blackCards.add(card._id);
+        // $scope.newDeck.blackCards.add(card._id);
+        $scope.newDeck.blackCards.add(card);
       }
     });
   }

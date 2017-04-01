@@ -1,4 +1,4 @@
-<h1 class="text-center">Deck Builder</h1>
+<h1 class="text-center">Expansion Builder</h1>
 
 <div class="row">
   <div class="col-xs-12 col-sm-6">
@@ -11,14 +11,17 @@
 
   <div class="text-center">
 
-    <select ng-model="deckId">
+    <!-- <select ng-model="deckId">
       <option disabled selected value> -- All cards -- </option>
       <option ng-repeat="d in decks track by $index" value="{{d._id}}">{{d.name}}</option>
-    </select>
-    <button class="btn btn-primary" ng-click="getCards()">Show me the cards!</button>
-    <br><br>
+    </select> -->
+    <!-- <button class="btn btn-primary" ng-click="getCards()">Show me the cards!</button> -->
+    <!-- <br><br> -->
     <button class="btn btn-primary" ng-click="addCards()">Add Selected Cards</button>
-    <button class="btn btn-primary" ng-show="deckRulesMet()" ng-click="createCustomDeck()">Create Custom Deck</button>
+    <br><br>
+    <input type="text" ng-model="newDeck.packName" placeholder="Expansion name" ng-show="expansionRulesMet()">
+    <button class="btn btn-primary" ng-show="expansionRulesMet()" ng-click="createCustomDeck()">Create Custom Expansion</button>
+    <p class="white"><strong>{{ errorMessage }}</strong></p>
   </div>
 
   <div class="text-center" ng-show="blackCards.length > 0">
