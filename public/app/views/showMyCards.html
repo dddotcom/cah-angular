@@ -1,6 +1,8 @@
 
 <div class="text-center">
 
+<h1>My Expansions</h1>
+
 
 <h2 class="text-center" ng-show="myCards.whiteCards.length > 0">My Answer Cards ({{myCards.whiteCards.length}})</h2>
 <div class="row">
@@ -16,7 +18,10 @@
           <h6>Cards Against Humanity</h6>
         </div>
 
-        <button class="btn btn-info" ng-click="toggleEdit(card)">Edit</button>
+        <button class="btn btn-info" ng-click="toggleEdit(false, card)">
+          <span ng-show="editingCard !== card._id">Edit</span>
+          <span ng-show="editingCard === card._id">Nvm</span>
+        </button>
         <button class="btn btn-danger" ng-click="deleteCard(false, card._id)">Delete</button>
     </div>
 </div>
@@ -27,6 +32,7 @@
           <div ng-show="editingCard === card._id" class="form-group">
             <label for="question">Question</label>
             <input type="text" class="form-control" placeholder="..." ng-model="card.question">
+            <label><strong>Blanks</strong></label>
             <section class="radio">
               <label class="Radio-inline">
                   <input type="radio" id="inlineRadio1" value="1" ng-model="card.blanks"> 1 </label>
@@ -40,7 +46,10 @@
           <h4>{{card.question}} </h4>
           <h6>Cards Against Humanity</h6>
         </div>
-        <button class="btn btn-info" ng-click="toggleEdit(card)">Edit</button>
+        <button class="btn btn-info" ng-click="toggleEdit(true, card)">
+          <span ng-show="editingCard !== card._id">Edit</span>
+          <span ng-show="editingCard === card._id">Nvm</span>
+        </button>
         <button class="btn btn-danger" ng-click="deleteCard(true, card._id)">Delete</button>
     </div>
 </div>

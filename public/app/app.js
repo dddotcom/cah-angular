@@ -42,6 +42,11 @@ app.config([
       url: '/404',
       templateUrl: 'app/views/404.html'
     })
+    .state('deckBuilder', {
+      url:'/deckBuilder',
+      templateUrl: 'app/views/deckBuilder.html',
+      controller: 'CustomDeckCtrl'
+    })
     .state('join', {
       url: '/:roomId',
       templateUrl: 'app/views/join.html',
@@ -52,7 +57,7 @@ app.config([
       templateUrl: 'app/views/main2.html',
       controller: 'MainCtrl'
     })
-  
+
 
     $locationProvider.html5Mode(true);
   }])

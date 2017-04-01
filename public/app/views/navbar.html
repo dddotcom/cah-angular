@@ -1,9 +1,10 @@
 <nav class="navbar navbar-inverse" role="navigation" ng-controller="NavCtrl">
   <ul class="nav navbar-nav">
     <li><a href="/">Home</a></li>
-    <li><a href="/build" ng-show='isLoggedIn()'>Build</a></li>
     <li><a href="/decks">Decks</a></li>
     <li><a href="/myCards" ng-show="isLoggedIn()">My Cards</a></li>
+    <li><a href="/build" ng-show='isLoggedIn()'>Card Builder</a></li>
+    <li><a href="/deckBuilder" ng-show="isLoggedIn()">Expansion Builder</a></li>
     <li><a href="/signup" ng-hide="isLoggedIn()">Signup</a></li>
     <li><a href="/login" ng-hide="isLoggedIn()">Login</a></li>
     <li><a href="/" ng-click="logout()" ng-show="isLoggedIn()">Logout</a></li>

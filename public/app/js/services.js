@@ -127,8 +127,19 @@ angular.module('Services', [])
     }
   };
 }])
-.factory('DeckAPI', ['$http', function($http){
+.factory('DeckAPI', ['$http', 'Auth', function($http, Auth){
   return {
+    createDeck: function(deck){
+      var id = Auth.currentUser().id;
+      deck.userId = id;
+      return $http.post("api/decks", deck)
+      .then(function success(response){
+        return response.data;
+      }, function error(err){
+        console.log("error", err);
+        return null;
+      });
+    },
     getDecks: function(){
       return $http.get("api/decks")
       .then(function success(response){
