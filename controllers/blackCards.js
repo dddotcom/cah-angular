@@ -30,6 +30,16 @@ router.get('/myCards/:userId', function(req, res) {
   });
 });
 
+router.get('/myAvailableCards/:userId/:packId', function(req, res) {
+  BlackCard.find({
+    userId: req.params.userId,
+    pack: req.params.packId
+  }, function(err, cards){
+    if (err) return res.status(500).send(err);
+    return res.send(cards);
+  });
+});
+
 router.post('/', function(req, res){
   BlackCard.create(req.body, function(err, blackCard){
     if (err) return res.status(500).send(err);

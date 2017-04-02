@@ -77,6 +77,8 @@ angular.module('DeckCtrls', ['Services'])
           console.log("error", err);
         });
       }
+    }, function error(err){
+      console.log("error", err);
     });
   }
 
@@ -194,19 +196,30 @@ angular.module('DeckCtrls', ['Services'])
   $scope.whiteCards = [];
   $scope.decks = [];
   $scope.isAllSelected = { blackCards: false, whiteCards: false};
+  $scope.message = '';
 
+  $scope.initializeCards = function(){
+    DeckAPI.getDeckId('User Created Cards')
+    .then(function success(res){
+      var id = res[0]._id;
+      WhiteCardAPI.getMyAvailableCards(id).then(function success(res){
+        $scope.whiteCards = res;
+      }, function error(err){
+        console.log("Error in myCards", err)
+      })
+      BlackCardAPI.getMyAvailableCards(id).then(function success(res){
+        $scope.blackCards = res;
+      }, function error(err){
+        console.log("Error in myCards", err)
+      })
+
+    }, function error(err){
+      console.log("error", err);
+    });
+  }
 
   if (Auth.isLoggedIn()){
-    WhiteCardAPI.getMyCards().then(function success(res){
-      $scope.whiteCards = res;
-    }, function error(err){
-      console.log("Error in myCards", err)
-    })
-    BlackCardAPI.getMyCards().then(function success(res){
-      $scope.blackCards = res;
-    }, function error(err){
-      console.log("Error in myCards", err)
-    })
+    $scope.initializeCards();
   }
 
   $scope.deckRulesMet = function(){
@@ -218,11 +231,10 @@ angular.module('DeckCtrls', ['Services'])
   }
 
   $scope.createCustomDeck = function(){
-    console.log("create my deck!");
     if($scope.newDeck.packName === ''){
+      $scope.message = '';
       $scope.errorMessage = "Please name your expansion";
     } else {
-      console.log("Creating your curstom deck: " + $scope.newDeck.packName);
       $scope.errorMessage = "";
       var deck = {
         name: $scope.newDeck.packName
@@ -248,6 +260,8 @@ angular.module('DeckCtrls', ['Services'])
             console.log("error", err);
           });
         });
+        $scope.message = newDeck.name + " Expansion has been created!";
+        $scope.initializeCards();
       }, function error(err){
         console.log(err);
       })

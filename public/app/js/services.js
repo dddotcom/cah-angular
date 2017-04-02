@@ -124,6 +124,16 @@ angular.module('Services', [])
         console.log("error", err);
         return null;
       });
+    },
+    getMyAvailableCards: function(packId){
+      var id = Auth.currentUser().id;
+      return $http.get("api/blackCards/myAvailableCards/"+ id + "/" + packId)
+      .then(function success(response){
+        return response.data;
+      }, function error(err){
+        console.log("error", err);
+        return null;
+      });
     }
   };
 }])
@@ -234,6 +244,16 @@ angular.module('Services', [])
     getMyCards: function(){
       var id = Auth.currentUser().id;
       return $http.get("api/whiteCards/myCards/" + id)
+      .then(function success(response){
+        return response.data;
+      }, function error(err){
+        console.log("error", err);
+        return null;
+      });
+    },
+    getMyAvailableCards: function(packId){
+      var id = Auth.currentUser().id;
+      return $http.get("api/whiteCards/myAvailableCards/"+ id + "/" + packId)
       .then(function success(response){
         return response.data;
       }, function error(err){
