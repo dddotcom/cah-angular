@@ -129,6 +129,25 @@ angular.module('Services', [])
 }])
 .factory('DeckAPI', ['$http', 'Auth', function($http, Auth){
   return {
+    deleteDeck: function(deckId){
+      return $http.delete("api/decks/" + deckId)
+      .then(function success(response){
+        return response.data;
+      }, function error(err){
+        console.log("error", err);
+        return null;
+      });
+    },
+    getMyDecks: function(){
+      var id = Auth.currentUser().id;
+      return $http.get("api/decks/myDecks/" + id)
+      .then(function success(response){
+        return response.data;
+      }, function error(err){
+        console.log("error", err);
+        return null;
+      });
+    },
     createDeck: function(deck){
       var id = Auth.currentUser().id;
       deck.userId = id;

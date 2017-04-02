@@ -5,7 +5,7 @@ var router = express.Router();
 
 //get all the black cards
 router.get('/', function(req, res){
-  BlackCard.find(function(err, blackCards){
+  BlackCard.find({userId: null}, function(err, blackCards){
     if(err) return res.status(500).send(err);
     return res.send(blackCards);
   });
