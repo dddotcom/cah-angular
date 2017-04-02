@@ -18,9 +18,6 @@ var io = require('socket.io')(server);
 
 
 
-
-
-
 //mongoose models and connection
 var mongoose = require('mongoose');
 var User = require('./models/user');
@@ -57,21 +54,19 @@ app.use(function (err, req, res, next) {
 
 //io stuff
 io.sockets.on('connection', function(socket){
-    var roomKey = socket.handshake.headers.referer
-    roomKey = roomKey.substring(roomKey.length-15)
-    console.log("room Key:", roomKey)
-    socket.join(roomKey)
-    console.log('a user connected to,', roomKey);
-    socket.on('get-users', function() {
-      var match = users.filter(function(value){
-        return value.room === roomKey;
-      })
-      io.sockets.in(roomKey).emit('all-users', match);
-  });
+      var roomKey = socket.handshake.headers.referer
+      roomKey = roomKey.substring(roomKey.length-15)
+      socket.on('get-users', function() {
+        var match = users.filter(function(value){
+          return value.room === roomKey;
+        })
+        io.sockets.in(roomKey).emit('all-users', match);
+    });
 
   //new user
   socket.on('join', function(data){
       //User name
+    roomKey = roomKey.substring(roomKey.length-15)
     socket.nickname = data.nickname;
     users[socket.nickname] = socket; 
     var userObj = {
@@ -79,6 +74,7 @@ io.sockets.on('connection', function(socket){
         socketid: socket.id,
         room: roomKey
       };
+    socket.join(roomKey)
     users.push(userObj);
     var match = users.filter(function(value){
       return value.room === roomKey;
@@ -103,7 +99,13 @@ io.sockets.on('connection', function(socket){
   });
 
   socket.on('disconnect', function(){
-    console.log("user disconnected");
+    for(i = users.length-1; i>=0; i-- ){
+      console.log('SOCKET:', socket.id, "socketid:", users[i].socketid)
+      if(users[i].socketid === socket.id) {
+        console.log(i)
+        users.splice(i, 1);
+      }
+    }
   });
 
   socket.on('send-card', function(data){
@@ -159,7 +161,6 @@ app.get('/*', function(req, res) {
 io.on('connection', function(socket){
   console.log("A user has connected")
   socket.on("disconnect", function(){
-    console.log("a user has disconnected");
   })
 })
 

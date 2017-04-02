@@ -21,7 +21,7 @@
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
         </div>
       </div>
-      <button class="btn well-btn winner-btn" ng-show="czarPicking && cardCzar === mynickname && !winnerSelected" ng-click="selectWinningAnswer()">Select Winner</button>
+      <button class="btn default-btn winner-btn" ng-show="czarPicking && cardCzar === mynickname && !winnerSelected" ng-click="selectWinningAnswer()">Select Winner</button>
       <div class="row">
         <div class='col-xs-3' ng-repeat="a in submittedAnswers track by $index">
           <div class='answer-card' ng-class="{selected: submittedAnswers[$index].nickname === roundWinner}" ng-click="!czarPicking || chooseWinningcard($index)">
@@ -34,7 +34,7 @@
     </div>
     <div class="jumbotron">
       <div class="row">
-        <button ng-click="submitAnswer()" ng-show="canSubmit()" class="btn well-btn">Submit!</button>
+        <button ng-click="submitAnswer()" ng-show="canSubmit()" class="btn default-btn">Submit!</button>
         <div class="col-xs-6">
           <h4 class="text-left">Hello, <strong>{{mynickname}}</strong></h4>
           <h4 ng-model="myscore">Score: {{myscore}}</h4>

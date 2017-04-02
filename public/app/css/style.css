@@ -210,28 +210,33 @@ h6 {
 }
 
 .default-btn {
-  color: #962715;
-  background-color: #bbc3c6;
-  border-color: #962715;
-  border-radius: 10px;
+  color: rgba(0,0,0,.6);
+  font-weight: bold;
+  background-color: rgba(0,0,0,.2);
+  border-color: #1e1e20;
+  border: 2px solid rgba(0,0,0,.6);
+  border-radius: 40px;
+  margin: 5px;
 }
 .default-btn:hover {
-  color: #bbc3c6;
-  background-color: #962715;
-  border-color: #962715;
+  color: black;
+  /*background-color: rgba(0,0,0, .5);*/
+  border-color: black
 }
 
-.well-btn {
-  color: #962715;
-  background-color: rgb(237, 237, 237);
-  border-color: #962715;
-  border-radius: 10px;
+.delete-btn {
+  color: rgba(0,0,0,.6);
+  font-weight: bold;
+  background-color: rgba(0,0,0,.2);
+  border-color: #1e1e20;
+  border: 2px solid rgba(0,0,0,.6);
+  border-radius: 40px;
+  margin: 5px;
 }
-.well-btn:hover {
-  color: rgb(237, 237, 237);
-  background-color: #962715;
-  border-color: #962715;
+.delete-btn:hover {
+  border-color: rgba(255,0,0,.9)
 }
+
 
 .winner-btn {
   display: block;
