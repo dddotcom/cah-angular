@@ -7,7 +7,7 @@
 		<div>
 				<form>
 					<input type="text" ng-model="addBlackCard" placeholder="Enter Question">
-					<button ng-click="update(addBlackCard,radiobtn); togglefrontBlack(); togglebackBlack()" class="btn btn-success"> Preview</button>
+					<button ng-click="update(addBlackCard,radiobtn); togglefrontBlack(); togglebackBlack()" class="btn default-btn"> Preview</button>
 					<button ng-click="createcustomBlack()" class="btn btn-success" ng-show='customBlack.question; customBlack.blanks'>Submit</button>
 
 				</form>
@@ -42,7 +42,7 @@
 		<div>
 				<form>
 					<input type="text" ng-model="addWhiteCard" placeholder="Enter Answer">
-					<button ng-click="create(addWhiteCard); togglefrontWhite(); togglebackWhite()" class="btn btn-success">Preview</button>
+					<button ng-click="create(addWhiteCard); togglefrontWhite(); togglebackWhite()" class="btn default-btn">Preview</button>
 					<button ng-click="createcustomWhite()" class="btn btn-success" ng-show='customWhite.answer'>Submit</button>
 				</form>
 				<br>

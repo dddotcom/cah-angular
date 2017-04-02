@@ -23,7 +23,7 @@
           <span ng-show="editingCard === card._id">Nvm</span>
         </button>
 
-        <button class="btn btn-danger" ng-click="deleteCard(false, card._id)">Delete</button>
+        <button class="btn delete-btn" ng-click="deleteCard(false, card._id)"><i class="fa fa-university fa-lg"></i></button>
     </div>
 </div>
     <h2 class="text-center" ng-show="myCards.blackCards.length > 0">My Question Cards ({{myCards.blackCards.length}})</h2>
@@ -52,6 +52,6 @@
           <span ng-show="editingCard === card._id">Nvm</span>
         </button>
 
-        <button class="btn btn-danger" ng-click="deleteCard(true, card._id)">Delete</button>
+        <button class="btn delete-btn" ng-click="deleteCard(true, card._id)"><i class="fa fa-university fa-lg"></i></button>
     </div>
 </div>
