@@ -11,10 +11,17 @@
 </div>
 
   <div class="text-center">
-    <button class="btn btn-primary" ng-click="addCards()">Add Selected Cards</button>
+    <button class="btn default-btn" ng-click="addCards()">Add Selected Cards</button>
     <br><br>
     <input type="text" ng-model="newDeck.packName" placeholder="Expansion name" ng-show="expansionRulesMet()">
-    <button class="btn btn-primary" ng-show="expansionRulesMet()" ng-click="createCustomDeck()">Create Custom Expansion</button>
+    <button class="btn default-btn" ng-show="expansionRulesMet()" ng-click="createCustomDeck()">Create Custom Expansion</button>
+    <br>
+    <div ng-show="expansionRulesMet() && myDecks.length > 0">
+      <select  ng-model="deckId">
+        <option ng-repeat="d in myDecks track by $index" value="{{d._id}}">{{d.name}}</option>
+      </select>
+      <button class="btn default-btn" ng-click="updateCustomDeck(deckId)">Add to Existing Expansion</button>
+    </div>
     <p><strong>{{ errorMessage }}</strong></p>
   </div>
 

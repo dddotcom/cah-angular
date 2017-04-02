@@ -20,7 +20,6 @@ angular.module('Services', [])
         try {
           //vulnerable code
           var payload = JSON.parse($window.atob(token.split(".")[1]));
-          console.log("payload decoded:", payload);
           //payload has user data in it
           return payload;
 

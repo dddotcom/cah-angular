@@ -7,11 +7,15 @@ angular.module('DeckCtrls', ['Services'])
   $scope.oldValue = '';
   $scope.blanks;
 
-  DeckAPI.getMyDecks().then(function success(res){
-    $scope.myDecks = res;
-  }, function error(err){
-    console.log(err);
-  });
+  $scope.initialize = function(){
+    DeckAPI.getMyDecks().then(function success(res){
+      $scope.myDecks = res;
+    }, function error(err){
+      console.log(err);
+    });
+  }
+
+  $scope.initialize();
 
   WhiteCardAPI.getMyCards().then(function success(res){
     $scope.myCards.whiteCards = res;
@@ -194,11 +198,19 @@ angular.module('DeckCtrls', ['Services'])
   $scope.newDeck = { blackCards: new Set(), whiteCards: new Set(), packName: '' };
   $scope.blackCards = [];
   $scope.whiteCards = [];
-  $scope.decks = [];
+  $scope.myDecks = [];
   $scope.isAllSelected = { blackCards: false, whiteCards: false};
   $scope.message = '';
+  $scope.deckId = '';
 
   $scope.initializeCards = function(){
+    $scope.newDeck = { blackCards: new Set(), whiteCards: new Set(), packName: '' };
+    DeckAPI.getMyDecks().then(function success(res){
+      $scope.myDecks = res;
+    }, function error(err){
+      console.log(err);
+    });
+
     DeckAPI.getDeckId('User Created Cards')
     .then(function success(res){
       var id = res[0]._id;
@@ -228,6 +240,27 @@ angular.module('DeckCtrls', ['Services'])
 
   $scope.expansionRulesMet = function(){
     return $scope.newDeck.blackCards.size > 0 || $scope.newDeck.whiteCards.size > 0;
+  }
+
+  $scope.updateCustomDeck = function(id){
+    var bc = Array.from($scope.newDeck.blackCards);
+    var wc = Array.from($scope.newDeck.whiteCards);
+    bc.forEach(function(c){
+      c.pack = id;
+      BlackCardAPI.updateCard(c).then(function success(res){
+      }, function error(err){
+        console.log("error", err);
+      });
+    });
+    wc.forEach(function(c){
+      c.pack = id;
+      WhiteCardAPI.updateCard(c).then(function success(res){
+      }, function error(err){
+        console.log("error", err);
+      });
+    });
+    $scope.message = "Expansion has been updated with " + (wc.length + bc.length) + " new cards!";
+    $scope.initializeCards();
   }
 
   $scope.createCustomDeck = function(){
