@@ -26,7 +26,12 @@ app.config([
     .state('showMyCards', {
       url: '/myCards',
       templateUrl: 'app/views/showMyCards.html',
-      controller: 'DeckCtrl'
+      controller: 'MyStuffCtrl'
+    })
+    .state('showMyExpansions', {
+      url: '/myExpansions',
+      templateUrl: 'app/views/myExpansions.html',
+      controller: 'MyStuffCtrl'
     })
     .state('signup', {
       url:'/signup',

@@ -20,7 +20,6 @@ angular.module('Services', [])
         try {
           //vulnerable code
           var payload = JSON.parse($window.atob(token.split(".")[1]));
-          console.log("payload decoded:", payload);
           //payload has user data in it
           return payload;
 
@@ -124,11 +123,40 @@ angular.module('Services', [])
         console.log("error", err);
         return null;
       });
+    },
+    getMyAvailableCards: function(packId){
+      var id = Auth.currentUser().id;
+      return $http.get("api/blackCards/myAvailableCards/"+ id + "/" + packId)
+      .then(function success(response){
+        return response.data;
+      }, function error(err){
+        console.log("error", err);
+        return null;
+      });
     }
   };
 }])
 .factory('DeckAPI', ['$http', 'Auth', function($http, Auth){
   return {
+    deleteDeck: function(deckId){
+      return $http.delete("api/decks/" + deckId)
+      .then(function success(response){
+        return response.data;
+      }, function error(err){
+        console.log("error", err);
+        return null;
+      });
+    },
+    getMyDecks: function(){
+      var id = Auth.currentUser().id;
+      return $http.get("api/decks/myDecks/" + id)
+      .then(function success(response){
+        return response.data;
+      }, function error(err){
+        console.log("error", err);
+        return null;
+      });
+    },
     createDeck: function(deck){
       var id = Auth.currentUser().id;
       deck.userId = id;
@@ -215,6 +243,16 @@ angular.module('Services', [])
     getMyCards: function(){
       var id = Auth.currentUser().id;
       return $http.get("api/whiteCards/myCards/" + id)
+      .then(function success(response){
+        return response.data;
+      }, function error(err){
+        console.log("error", err);
+        return null;
+      });
+    },
+    getMyAvailableCards: function(packId){
+      var id = Auth.currentUser().id;
+      return $http.get("api/whiteCards/myAvailableCards/"+ id + "/" + packId)
       .then(function success(response){
         return response.data;
       }, function error(err){
