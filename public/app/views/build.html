@@ -20,6 +20,7 @@
 							<div ng-show="backBlack">
 								<p>{{addBlackCard}}</p>
 								<p> {{togglebackBlack}}</p>
+								<h6>Cards Against Humanity</h6>
 							</div>
 					</section>
 					<strong style="color: white;">Blank spaces needed to answer question:</strong>
@@ -45,16 +46,17 @@
 					<button ng-click="createcustomWhite()" class="btn btn-success" ng-show='customWhite.answer'>Submit</button>
 				</form>
 				<br>
-					<div class="newWhiteCard">
-						<div ng-show="frontWhite" class="card-back">
+					<section class="newWhiteCard">
+						<div ng-show="frontWhite">
 							<p>{{togglefrontWhite}}</p>
 							<h6>Cards Against Humanity</h6>
 						</div>
 						<div ng-show="backWhite">
 							<h4>{{addWhiteCard}}</h4>
 							<p>{{togglebackWhite}}</p>
+							<h6>Cards Against Humanity</h6>
 						</div>
-					</div>
+					</section>
 		 </div>
 	</div>
 </div>
