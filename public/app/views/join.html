@@ -12,16 +12,28 @@
 			<p class="nickname">{{x.nickname}} <span ng-show="x.nickname === mynickname"><i class="fa fa-hand-o-left" aria-hidden="true"></i></span></p>
 		</div>
 
-		<h4 ng-show="playerList[0].nickname === mynickname"><strong>Select which expansions you would like to play with:</strong></h4>
-		<label ng-repeat="d in decks track by $index" ng-show="playerList[0].nickname === mynickname">
-			<span class="checkBox">
-				<input ng-model="d.selected" type="checkbox" value="{{d._id}}">
-				<label>{{d.name}}</label>
-			</span>
-		</label><br/>
+		<div ng-show="playerList[0].nickname === mynickname">
+			<h4><strong>Select which expansions you would like to play with:</strong></h4>
+			<label ng-repeat="d in decks track by $index">
+				<span class="checkBox">
+					<input ng-model="d.selected" type="checkbox" value="{{d._id}}">
+					<label>{{d.name}}</label>
+				</span>
+			</label>
+			<div ng-show="myDecks.length > 0">
+				<h4><strong>Select which <i>custom</i> expansions you would like to play with:</strong></h4>
+				<label ng-repeat="d in myDecks track by $index">
+					<span class="checkBox">
+						<input ng-model="d.selected" type="checkbox" value="{{d._id}}">
+						<label>{{d.name}}</label>
+					</span>
+				</label>
+			</div>
+		</div>
+
+		<br/>
 
 		<a ng-show="playerList.length >= 3 && playerList.length <= 10 && playerList[0].nickname === mynickname" class="btn default-btn" value="Start Game" ng-click="startGame()" >Start Game</a>
 		<br><br>
 		<p class="white"><strong>{{ errorMessage }}</strong></p>
 </div>
-

@@ -1,10 +1,11 @@
 angular.module('ChatCtrls', ['Services'])
-.controller('JoinCtrl', ['$location', '$scope', '$localStorage', 'socket', '$state', '$stateParams', 'DeckAPI', 'sharedProperties',  function($location, $scope, $localStorage, socket, $state, $stateParams, DeckAPI, sharedProperties){
+.controller('JoinCtrl', ['$location', '$scope', '$localStorage', 'socket', '$state', '$stateParams', 'DeckAPI', 'sharedProperties', 'Auth', function($location, $scope, $localStorage, socket, $state, $stateParams, DeckAPI, sharedProperties, Auth){
   $scope.playerInput = '';
   $scope.playerList = [];
   $scope.nicknames = [];
   $scope.mynickname = '';
   $scope.decks = [];
+  $scope.myDecks = [];
   $scope.sendDothBitchesElsewhere = false;
   var nickname;
   $scope.privateRoom = window.location.href;
@@ -14,6 +15,14 @@ angular.module('ChatCtrls', ['Services'])
   }, function error(err){
     console.log(err);
   });
+
+  if (Auth.isLoggedIn()){
+    DeckAPI.getMyDecks().then(function success(res){
+      $scope.myDecks = res;
+    }, function error(err){
+      console.log(err);
+    });
+  }
 
   $scope.randomString = function() {
     var text = "";
@@ -35,7 +44,7 @@ angular.module('ChatCtrls', ['Services'])
     $scope.nicknames = [];
     data.forEach(function(d){
       $scope.nicknames.push(d.nickname);
-    }); 
+    });
   });
 
   $scope.$watch("sendDothBitchesElsewhere", function(newVal, oldVal){
@@ -82,7 +91,13 @@ angular.module('ChatCtrls', ['Services'])
         deckIds.push(d._id);
       }
     });
-    console.log(deckIds);
+
+    $scope.myDecks.forEach(function(d){
+      if(d.selected){
+        deckIds.push(d._id);
+      }
+    });
+
     if(deckIds.length !== 0){
       sharedProperties.setDeckIds(deckIds);
       socket.emit('send-bitches', {
@@ -134,7 +149,7 @@ angular.module('ChatCtrls', ['Services'])
             console.log("a user connected to " + $scope.room)
         })
 
-      
+
 
         socket.on('all-users', function(data) {
             $scope.users = data;
@@ -159,7 +174,8 @@ angular.module('ChatCtrls', ['Services'])
           }
           $scope.myCards = $localStorage.cards;
           $scope.whiteCards = data.whiteCards;
-          console.log("white cards length = " + $scope.whiteCards.length);
+          // console.log("line 169: white cards length = " + $scope.whiteCards.length);
+          // console.log($scope.whiteCards);
         });
 
         $scope.canSubmit = function(){
@@ -172,7 +188,6 @@ angular.module('ChatCtrls', ['Services'])
 
         $scope.drawBlackCard = function(){
           if($scope.users.length < 3) {
-            console.log("hi")
             $location.path("/");
             return;
           }
@@ -236,7 +251,8 @@ angular.module('ChatCtrls', ['Services'])
           $scope.czarPicking = false;
           $scope.cardCzar = data.cardCzar;
           $scope.cardCzarIndex = data.cardCzarIndex;
-          console.log("Suck it trebeck", $scope.blackCards.length)
+          // console.log("line 248: Suck it trebeck", $scope.blackCards.length)
+          // console.log($scope.blackCards);
         });
 
         socket.on('new-round-received', function(){
@@ -277,7 +293,6 @@ angular.module('ChatCtrls', ['Services'])
 
         $scope.submitAnswer = function() {
           if($scope.users.length < 3) {
-            console.log("hi")
             $location.path("/");
             return;
           }
