@@ -4,7 +4,7 @@ var router = express.Router();
 
 //get all the white cards
 router.get('/', function(req, res){
-  WhiteCard.find(function(err, whiteCards){
+  WhiteCard.find({userId: null},function(err, whiteCards){
     if(err) return res.status(500).send(err);
     return res.send(whiteCards);
   });
@@ -25,6 +25,16 @@ router.get('/:deckIds', function(req, res){
 router.get('/myCards/:userId', function(req, res) {
   WhiteCard.find({
     userId: req.params.userId
+  }, function(err, cards){
+    if (err) return res.status(500).send(err);
+    return res.send(cards);
+  });
+});
+
+router.get('/myAvailableCards/:userId/:packId', function(req, res) {
+  WhiteCard.find({
+    userId: req.params.userId,
+    pack: req.params.packId
   }, function(err, cards){
     if (err) return res.status(500).send(err);
     return res.send(cards);

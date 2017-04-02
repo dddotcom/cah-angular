@@ -4,7 +4,7 @@ var router = express.Router();
 
 //all decks
 router.get('/', function(req, res){
-  Deck.find(function(err, decks){
+  Deck.find({userId: null, name: {$ne: "User Created Cards"}}, function(err, decks){
     if(err) return res.status(500).send(err);
     return res.send(decks);
   });
@@ -18,11 +18,28 @@ router.get('/:deckName', function(req, res){
   });
 });
 
+router.get('/myDecks/:userId', function(req, res){
+  Deck.find({
+    userId: req.params.userId
+  }, function(err, decks){
+    if (err) return res.status(500).send(err);
+    return res.send(decks);
+  });
+});
+
 //create new deck
 router.post('/', function(req, res){
   Deck.create(req.body, function(err, deck){
     if (err) return res.status(500).send(err);
     return res.send(deck);
+  });
+});
+
+//delete deck
+router.delete('/:deckId', function(req, res){
+  Deck.findByIdAndRemove(req.params.deckId, function(err){
+    if(err) return res.status(500).send(err);
+    return res.send({message: 'successful deck delete'});
   });
 });
 

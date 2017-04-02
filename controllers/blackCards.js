@@ -5,7 +5,7 @@ var router = express.Router();
 
 //get all the black cards
 router.get('/', function(req, res){
-  BlackCard.find(function(err, blackCards){
+  BlackCard.find({userId: null}, function(err, blackCards){
     if(err) return res.status(500).send(err);
     return res.send(blackCards);
   });
@@ -24,6 +24,16 @@ router.get('/:deckIds', function(req, res){
 router.get('/myCards/:userId', function(req, res) {
   BlackCard.find({
     userId: req.params.userId
+  }, function(err, cards){
+    if (err) return res.status(500).send(err);
+    return res.send(cards);
+  });
+});
+
+router.get('/myAvailableCards/:userId/:packId', function(req, res) {
+  BlackCard.find({
+    userId: req.params.userId,
+    pack: req.params.packId
   }, function(err, cards){
     if (err) return res.status(500).send(err);
     return res.send(cards);
