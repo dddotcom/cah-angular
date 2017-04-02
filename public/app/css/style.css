@@ -2,9 +2,10 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*background-image: url("../img/wood-bg.jpg");*/
-  /*background-size: cover;*/
-  background-color: #bbc3c6;
+  background-image: url("../img/bg.png");
+  background-size: cover;
+  background-color: #1e1e20;
+  background-repeat: no-repeat;
 }
 
 .radio {
@@ -12,7 +13,7 @@ body {
 }
 
 .chat {
-  background-color: rgba(0,0,0,.8);
+  background-color: #1e1e20;
   color: white;
   position: fixed;
   top: 0px;
@@ -47,7 +48,7 @@ body {
 }
 
 .navbar {
-  background-color: #962715;
+  background-color: #1e1e20;
   border: none;
 }
 
@@ -160,6 +161,7 @@ footer .heart {
 
 .jumbotron {
   padding-top: 10px;
+  background-color: rgba(0,0,0,0);
 }
 
 .newBlackCard, .newWhiteCard,{
@@ -262,4 +264,3 @@ h6 {
 
 
 /*TEST*/
-
