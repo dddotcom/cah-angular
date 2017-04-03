@@ -39,9 +39,15 @@ app.use(require('morgan')('dev'));
 app.use('/api/users', expressJWT({secret: secret}).unless({
   path: [{ url: '/api/users', methods: ['POST'] }]
 }), require('./controllers/users'));
-app.use('/api/blackCards', require('./controllers/blackCards'));
-app.use('/api/whiteCards', require('./controllers/whiteCards'));
-app.use('/api/decks', require('./controllers/decks'));
+//prevent those not logged in from touching the database
+app.use('/api/blackCards', expressJWT({secret: secret}).unless({method: 'GET'}), require('./controllers/blackCards'));
+app.use('/api/whiteCards', expressJWT({secret: secret}).unless({method: 'GET'}), require('./controllers/whiteCards'));
+app.use('/api/decks', expressJWT({secret: secret}).unless({method: 'GET'}), require('./controllers/decks'));
+
+
+// app.use('/api/blackCards', require('./controllers/blackCards'));
+// app.use('/api/whiteCards', require('./controllers/whiteCards'));
+// app.use('/api/decks', require('./controllers/decks'));
 
 // this middleware will check if expressJWT did not authorize the user, and return a message
 app.use(function (err, req, res, next) {
