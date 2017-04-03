@@ -86,7 +86,7 @@ angular.module('BuildCtrls', ["Services"])
                 })
         }, function error(err){
             console.log('Error Finding Deck', err)
-        })
+            })
   		};
     
 	}]);

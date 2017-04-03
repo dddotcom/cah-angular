@@ -98,13 +98,13 @@ angular.module('ChatCtrls', ['Services'])
       }
     });
 
-    if(deckIds.length !== 0){
+    if(deckIds.length >= 2){
       sharedProperties.setDeckIds(deckIds);
       socket.emit('send-bitches', {
         sendDothBitchesElsewhere: true
       });
     } else {
-      $scope.errorMessage = "Thee wilt select at least one deck doth the game best beenst kench'd";
+      $scope.errorMessage = "Thee wilt select at least two primary decks doth the game best beenst kench'd";
     }
   }
 

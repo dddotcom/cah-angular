@@ -6,8 +6,8 @@
 			<h1>Create a Question</h1>
 		<div>
 				<form>
-					<input type="text" ng-model="addBlackCard" placeholder="Enter Question">
-					<button ng-click="update(addBlackCard,radiobtn); togglefrontBlack(); togglebackBlack()" class="btn default-btn"> Preview</button>
+					<input type="text" ng-model="customBlack.question" placeholder="Enter Question">
+					<button ng-click="update(customBlack.question,radiobtn); togglefrontBlack(); togglebackBlack()" class="btn default-btn"> Preview</button>
 					<button ng-click="createcustomBlack()" class="btn default-btn" ng-show='customBlack.question; customBlack.blanks'>Submit</button>
 
 				</form>
@@ -18,7 +18,7 @@
 								<h6>Cards Against Humanity</h6>
 							</div>
 							<div ng-show="backBlack">
-								<p>{{addBlackCard}}</p>
+								<h4>{{customBlack.question}}</h4>
 								<p> {{togglebackBlack}}</p>
 								<h6>Cards Against Humanity</h6>
 							</div>
@@ -41,8 +41,8 @@
 			<h1 style="width: 300px;">Create an Answer</h1>
 		<div>
 				<form>
-					<input type="text" ng-model="addWhiteCard" placeholder="Enter Answer">
-					<button ng-click="create(addWhiteCard); togglefrontWhite(); togglebackWhite()" class="btn default-btn">Preview</button>
+					<input type="text" ng-model="customWhite.answer" placeholder="Enter Answer">
+					<button ng-click="create(customWhite.answer); togglefrontWhite(); togglebackWhite()" class="btn default-btn">Preview</button>
 					<button ng-click="createcustomWhite()" class="btn default-btn" ng-show='customWhite.answer'>Submit</button>
 				</form>
 				<br>
@@ -52,7 +52,7 @@
 							<h6>Cards Against Humanity</h6>
 						</div>
 						<div ng-show="backWhite">
-							<h4>{{addWhiteCard}}</h4>
+							<h4>{{customWhite.answer}}</h4>
 							<p>{{togglebackWhite}}</p>
 							<h6>Cards Against Humanity</h6>
 						</div>
