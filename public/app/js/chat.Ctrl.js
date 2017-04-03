@@ -42,6 +42,7 @@ angular.module('ChatCtrls', ['Services'])
   socket.on('all-users', function(data){
     $scope.playerList = data;
     $scope.nicknames = [];
+    console.log(data)
     data.forEach(function(d){
       $scope.nicknames.push(d.nickname);
     });
