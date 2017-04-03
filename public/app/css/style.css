@@ -299,6 +299,8 @@ h6 {
   font-size: 80px;
 }
 
-
-
+#logout{
+  position: absolute;
+  right: 0px;
+}
 /*TEST*/
