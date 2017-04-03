@@ -5,6 +5,7 @@ With extra features such as creating your own cards, creating your own expansion
 
 ## Technologies Used
 <hr>
+
 * A full-stack MEAN(mongoDB, Express, Angular, Node) app
   * Bcrypt and JWT for auth
   * Mongoose for integration with mongoDB from express
@@ -13,13 +14,32 @@ With extra features such as creating your own cards, creating your own expansion
 
 ## Mockups
 <hr>
+
 ![View1](https://res.cloudinary.com/dov5rx5fp/image/upload/v1491177363/cah1_cz6oiu.png)
 ![View2](https://res.cloudinary.com/dov5rx5fp/image/upload/v1491177363/cah2_nvyhji.png)
 ![View3](https://res.cloudinary.com/dov5rx5fp/image/upload/v1491177364/cah3_me0yvy.png)
 ![View4](https://res.cloudinary.com/dov5rx5fp/image/upload/v1491177363/cah4_tfraxi.png)
 
+## Router Views
+<hr>
+
+| State        | URL           | Template           | Controller  | User needs to be logged in
+| ------------- |:-------------:|:-------------:| -----:|-----:|
+| home | / | home.html | JoinCtrl | FALSE
+| build | /build | build.html | BuildCtrl | TRUE
+| decks | /decks | showdeck.html | DeckCtrl | FALSE
+| showMyCards | /myCards | showMyCards.html | MyStuffCtrl | TRUE
+| showMyExpansions | /myExpansions | myExpansions.html | MyStuffCtrl | TRUE
+| signup | /signup | userSignup.html | SignupCtrl | FALSE
+| login | /login | userLogin.html | LoginCtrl | FALSE
+| 404 | /404 | 404.html |  | FALSE
+| deckBuilder | /deckBuilder | deckBuilder.html | CustomDeckCtrl | TRUE
+| join | /:roomId | join.html | JoinCtrl | FALSE
+| main | /main/:roomId | main2.html | MainCtrl | FALSE
+
 ## Routes
 <hr>
+
 ### User/Auth
 | Method        | URL           | Purpose           | Data  |
 | ------------- |:-------------:|:-------------:| -----:|
@@ -60,6 +80,7 @@ With extra features such as creating your own cards, creating your own expansion
 
 ## Database
 <hr>
+
 ### Collections
 By default all documents come with the following attributes:
 * id
