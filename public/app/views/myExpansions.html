@@ -5,9 +5,9 @@
   </select>
   <button class="btn default-btn" ng-show="myDecks.length" ng-click="getCards()">Show me cards!</button>
   <h3 ng-hide="myDecks.length">Create some decks using the creation tool.</h3>
-  <a ng-hide="myDecks.length" class=" btn default-btn" href="/deckBuilder">Go Build Decks</a>
+  <a ng-hide="myDecks.length" class="btn default-btn" href="/deckBuilder">Go Build Decks</a>
   <br>
-  <button class="btn delete-btn" ng-show="deckId !== ''" ng-click="deleteExpansion(deckId)">Delete Expansion</button>
+  <button class="btn delete-btn" ng-show="deckId !== '' && canDelete" ng-click="deleteExpansion(deckId)">Delete Expansion</button>
 </div>
 
 <div class="deck-container">

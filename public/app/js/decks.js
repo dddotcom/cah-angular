@@ -6,6 +6,7 @@ angular.module('DeckCtrls', ['Services'])
   $scope.editingCard = '';
   $scope.oldValue = '';
   $scope.blanks;
+  $scope.canDelete = false;
 
   $scope.initialize = function(){
     DeckAPI.getMyDecks().then(function success(res){
@@ -34,6 +35,7 @@ angular.module('DeckCtrls', ['Services'])
     $scope.whiteCards = [];
     BlackCardAPI.getCardsFromManyDecks($scope.deckId).then(function success(response){
       $scope.blackCards = response;
+      $scope.canDelete = true;
     }, function error(err){
       console.log(err);
     });
@@ -61,7 +63,7 @@ angular.module('DeckCtrls', ['Services'])
     }, function error(err){
       console.log("error", err);
     });
-    $location.path('/myExpansions')
+    location.reload()
   }
 
   $scope.removeFromExpansion = function(isBlackCard, card){
