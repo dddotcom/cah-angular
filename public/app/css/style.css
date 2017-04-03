@@ -13,8 +13,9 @@ body {
   font-weight: bold;
   margin: 30px auto 0 auto;
   line-height: 1.5;
-  color:  #1e1e20;
-  background-color: rgba(255,255,255,0.2);
+  /*color:  #1e1e20;*/
+  color:  white;
+  /*background-color: rgba(255,255,255,0.2);*/
   position: fixed;
   bottom: 10px;
   width: 100%;
@@ -22,7 +23,8 @@ body {
 
 #footer a{
   text-decoration: none;
-  color:  #1e1e20;
+  /*color:  #1e1e20;*/
+  color:  white;
 }
 
 #footer a:hover {
@@ -63,6 +65,11 @@ body {
 
 .alertMessage {
   color: #962715;
+}
+
+.czar-text {
+  font-size: 2.25em;
+  font-weight: bold;
 }
 
 .white, .whiteC {
