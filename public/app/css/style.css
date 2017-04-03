@@ -8,6 +8,28 @@ body {
   background-repeat: no-repeat;
 }
 
+#footer {
+  font-size: 1.0em;
+  font-weight: bold;
+  margin: 30px auto 0 auto;
+  line-height: 1.5;
+  color:  #1e1e20;
+  background-color: rgba(255,255,255,0.2);
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+}
+
+#footer a{
+  text-decoration: none;
+  color:  #1e1e20;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+  color: #d1b280;
+}
+
 .radio {
   margin-top: 0px;
 }
@@ -50,6 +72,7 @@ body {
 .navbar {
   background-color: #1e1e20;
   border: none;
+  border-radius: 0px;
 }
 
 .nickname-input {
@@ -237,6 +260,9 @@ h6 {
   border-color: rgba(255,0,0,.9)
 }
 
+.black {
+  color: #1e1e20;
+}
 
 .winner-btn {
   display: block;
