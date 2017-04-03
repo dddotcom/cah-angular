@@ -20,6 +20,13 @@ With extra features such as creating your own cards, creating your own expansion
 ![View3](https://res.cloudinary.com/dov5rx5fp/image/upload/v1491177364/cah3_me0yvy.png)
 ![View4](https://res.cloudinary.com/dov5rx5fp/image/upload/v1491177363/cah4_tfraxi.png)
 
+### Old UI Versions
+Version 0 
+![version0](https://res.cloudinary.com/dov5rx5fp/image/upload/v1491237106/design0_j4hbtb.png)
+
+Version 1
+![version1](https://res.cloudinary.com/dov5rx5fp/image/upload/v1491237083/design1_az6nie.png)
+
 ## Router Views
 <hr>
 
