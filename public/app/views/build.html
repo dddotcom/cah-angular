@@ -8,7 +8,7 @@
 				<form>
 					<input type="text" ng-model="addBlackCard" placeholder="Enter Question">
 					<button ng-click="update(addBlackCard,radiobtn); togglefrontBlack(); togglebackBlack()" class="btn default-btn"> Preview</button>
-					<button ng-click="createcustomBlack()" class="btn btn-success" ng-show='customBlack.question; customBlack.blanks'>Submit</button>
+					<button ng-click="createcustomBlack()" class="btn default-btn" ng-show='customBlack.question; customBlack.blanks'>Submit</button>
 
 				</form>
 				<br>
@@ -33,7 +33,7 @@
 					<label class="Radio-inline">
   						<input type="radio" id="inlineRadio3" value="3" ng-model="radiobtn"> 3 </label>
   				</section>
-		</div>			
+		</div>
 	</div>
 
 
@@ -43,7 +43,7 @@
 				<form>
 					<input type="text" ng-model="addWhiteCard" placeholder="Enter Answer">
 					<button ng-click="create(addWhiteCard); togglefrontWhite(); togglebackWhite()" class="btn default-btn">Preview</button>
-					<button ng-click="createcustomWhite()" class="btn btn-success" ng-show='customWhite.answer'>Submit</button>
+					<button ng-click="createcustomWhite()" class="btn default-btn" ng-show='customWhite.answer'>Submit</button>
 				</form>
 				<br>
 					<section class="newWhiteCard">
