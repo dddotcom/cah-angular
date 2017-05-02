@@ -39,10 +39,6 @@ angular.module('ChatCtrls', ['Services'])
     // $location.path("/" + roomId);
     window.location.href = "/" + roomId
   }
-  
-  setInterval(function(){
-    socket.emit('get-users', $stateParams.roomId); 
-  }, 1000);
 
   socket.on('all-users', function(data){
     console.log("playerdata: " + data)
