@@ -60,26 +60,33 @@ app.use(function (err, req, res, next) {
 
 //io stuff
 io.sockets.on('connection', function(socket){
-      var roomKey = socket.handshake.headers.referer
-      roomKey = roomKey.substring(roomKey.length-15)
-      socket.on('get-users', function() {
-        var match = users.filter(function(value){
-          return value.room === roomKey;
-        })
-        io.sockets.in(roomKey).emit('all-users', match);
-    });
+  var roomKey = socket.handshake.headers.referer
+  roomKey = roomKey.substring(roomKey.length-15)
+
+  socket.on('get-users', function(data) {
+    var match = users.filter(function(value){
+      return value.room === data;
+    })
+    io.sockets.in(data).emit('all-users', match);
+  });
+
+  socket.on('switch-socket', function(data){
+    console.log(data)
+    socket.join(data)
+    console.log(socket.id + socket.rooms)
+  })
 
   //new user
   socket.on('join', function(data){
-      //User name
+    //User name
     roomKey = roomKey.substring(roomKey.length-15)
     socket.nickname = data.nickname;
-    users[socket.nickname] = socket; 
+    users[socket.nickname] = socket;
     var userObj = {
         nickname: data.nickname,
         socketid: socket.id,
         room: roomKey
-      };
+    };
     socket.join(roomKey)
     users.push(userObj);
     var match = users.filter(function(value){
@@ -106,9 +113,7 @@ io.sockets.on('connection', function(socket){
 
   socket.on('disconnect', function(){
     for(i = users.length-1; i>=0; i-- ){
-      console.log('SOCKET:', socket.id, "socketid:", users[i].socketid)
       if(users[i].socketid === socket.id) {
-        console.log(i)
         users.splice(i, 1);
       }
     }

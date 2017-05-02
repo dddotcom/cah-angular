@@ -35,14 +35,19 @@ angular.module('ChatCtrls', ['Services'])
 
   $scope.createRoom = function() {
     var roomId = $scope.randomString();
-    $location.path("/" + $scope.randomString());
+    socket.emit('switch-socket', roomId)
+    // $location.path("/" + roomId);
+    window.location.href = "/" + roomId
   }
+  
+  setInterval(function(){
+    socket.emit('get-users', $stateParams.roomId); 
+  }, 1000);
 
-  socket.emit('get-users');
   socket.on('all-users', function(data){
+    console.log("playerdata: " + data)
     $scope.playerList = data;
     $scope.nicknames = [];
-    console.log(data)
     data.forEach(function(d){
       $scope.nicknames.push(d.nickname);
     });
@@ -150,8 +155,6 @@ angular.module('ChatCtrls', ['Services'])
             console.log("a user connected to " + $scope.room)
         })
 
-
-
         socket.on('all-users', function(data) {
             $scope.users = data;
             $scope.nicknames = [];
@@ -175,8 +178,6 @@ angular.module('ChatCtrls', ['Services'])
           }
           $scope.myCards = $localStorage.cards;
           $scope.whiteCards = data.whiteCards;
-          // console.log("line 169: white cards length = " + $scope.whiteCards.length);
-          // console.log($scope.whiteCards);
         });
 
         $scope.canSubmit = function(){
